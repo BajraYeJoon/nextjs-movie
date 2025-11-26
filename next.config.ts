@@ -6,13 +6,12 @@ const nextConfig: NextConfig = {
   compress: true,
   reactStrictMode: true,
   productionBrowserSourceMaps: false,
-  typedRoutes: true,
   images: {
     unoptimized: false,
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "images.unsplash.com",
+        hostname: "image.tmdb.org",
         port: "",
         pathname: "/**",
       },
