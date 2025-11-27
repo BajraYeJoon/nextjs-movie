@@ -7,10 +7,17 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false,
   images: {
     unoptimized: false,
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "image.tmdb.org",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
         port: "",
         pathname: "/**",
       },

@@ -49,7 +49,7 @@ export default async function MovieDetailPage({ params }: PageProps) {
 
   const posterUrl = movie.poster_path
     ? `https://image.tmdb.org/t/p/w780${movie.poster_path}`
-    : "/placeholder-poster.svg";
+    : 'https://placehold.co/780x1170';
 
   const backdropUrl = movie.backdrop_path
     ? `https://image.tmdb.org/t/p/original${movie.backdrop_path}`

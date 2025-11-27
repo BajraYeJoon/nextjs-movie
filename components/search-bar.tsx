@@ -11,6 +11,8 @@ export default function SearchBar() {
   const [query, setQuery] = useState(initialQuery);
 
   useEffect(() => {
+    if (query === initialQuery) return;
+
     const debounce = setTimeout(() => {
       const params = new URLSearchParams(searchParams.toString());
 
@@ -26,7 +28,7 @@ export default function SearchBar() {
     }, 500);
 
     return () => clearTimeout(debounce);
-  }, [query, router, searchParams]);
+  }, [query, router, searchParams, initialQuery]);
 
   return (
     <div className="search-bar relative w-full max-w-md">

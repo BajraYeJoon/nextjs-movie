@@ -30,7 +30,7 @@ export default function FavoritesList() {
       {favorites?.map((movie) => {
         const posterUrl = movie?.poster_path
           ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-          : "/placeholder-poster.svg";
+          : `https://placehold.co/500x750`;
         const releaseYear = movie?.release_date
           ? new Date(movie?.release_date).getFullYear()
           : "N/A";
