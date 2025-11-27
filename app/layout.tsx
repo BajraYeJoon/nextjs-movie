@@ -12,9 +12,37 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Movi - Movie Database",
-  description: "Discover and explore movies with Movi",
+  title: {
+    default: "Movie - Discover Movies",
+    template: "%s | Movie",
+  },
+  description: "Discover and explore thousands of movies.",
+  keywords: ["movies", "films", "movie search"],
+  authors: [{ name: "bajra" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: baseUrl,
+    title: "Movie - Discover Movies",
+    description: "Discover and explore thousands of movies",
+    siteName: "Movi",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Movie - Discover Movies",
+    description: "Discover and explore thousands of movies",
+  },
+  alternates: {
+    canonical: baseUrl,
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

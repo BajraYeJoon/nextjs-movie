@@ -31,7 +31,7 @@ export async function getMoviesByGenre(genreId: number, page: number = 1): Promi
 }
 
 export async function getMovieDetails(movieId: number): Promise<MovieDetail> {
-  return fetchFromTMDB(`/movie/${movieId}?append_to_response=credits,videos,images,similar`);
+  return fetchFromTMDB(`/movie/${movieId}`);
 }
 
 export async function getGenres() {
@@ -41,6 +41,8 @@ export async function getGenres() {
 
 export async function getGenreNames(genreIds: number[]): Promise<string[]> {
   const genres = await getGenres();
-  const genreMap = new Map(genres.map((g: { id: number; name: string }) => [g.id, g.name]));
-  return genreIds.map(id => genreMap.get(id)).filter(Boolean) as string[];
+  const genreMap = new Map(
+    genres?.map((g: { id: number; name: string }) => [g?.id, g?.name])
+  );
+  return genreIds?.map((id) => genreMap?.get(id)).filter(Boolean) as string[];
 }

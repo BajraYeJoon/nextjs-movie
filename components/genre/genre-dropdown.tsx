@@ -33,16 +33,15 @@ export default function GenreDropdown({ genres }: GenreDropdownProps) {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center justify-center h-10 w-10 rounded-lg bg-card border border-border text-foreground  cursor-pointer transition-colors
+        className={`flex items-center justify-center size-12 rounded-lg bg-card border border-border text-foreground  cursor-pointer transition-colors
           ${isOpen ? 'bg-primary' : 'bg-transparent'}
           `}
       >
-
-        <Filter className={`h-5 w-5 `}  />
+        <Filter size={20}  />
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-card border border-border rounded-lg shadow-lg z-10 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden">
+        <div className="dropdown absolute top-full right-0 mt-2 w-48 bg-card border border-border rounded-lg  z-10 overflow-hidden">
           <div className="max-h-64 overflow-y-auto">
             <button
               onClick={() => handleGenreChange('all')}
@@ -52,19 +51,19 @@ export default function GenreDropdown({ genres }: GenreDropdownProps) {
                   : 'text-foreground hover:bg-card/80'
               }`}
             >
-              All Genres
+              All Genre
             </button>
-            {genres.map((genre) => (
+            {genres?.map((genre) => (
               <button
-                key={genre.id}
-                onClick={() => handleGenreChange(genre.id.toString())}
+                key={genre?.id}
+                onClick={() => handleGenreChange(genre?.id.toString())}
                 className={`w-full text-left px-4 py-2 transition-colors cursor-pointer ${
-                  selectedGenre === genre.id.toString()
+                  selectedGenre === genre?.id.toString()
                     ? 'bg-primary text-primary-foreground'
                     : 'text-foreground hover:bg-card/80'
                 }`}
               >
-                {genre.name}
+                {genre?.name}
               </button>
             ))}
           </div>

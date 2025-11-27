@@ -4,6 +4,7 @@ import { Star, Info } from "lucide-react";
 import { Movie } from "@/types/movie-type";
 import { Suspense } from "react";
 import { getGenreNames } from "@/lib/tmdb";
+import FavoriteButton from "./favorite-button";
 
 interface MovieCardProps {
   movie: Movie;
@@ -27,9 +28,13 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
   return (
     <div className="group relative w-full cursor-pointer h-full flex flex-col">
-      <Link href={`/movie/${movie.id}`} className="flex-1 flex flex-col">
-        <div className="relative overflow-hidden rounded-xl bg-card transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/20 h-full flex flex-col">
-          <div className="relative aspect-[2/3] overflow-hidden">
+      <div className="relative overflow-hidden rounded-xl bg-card transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/20 h-full flex flex-col">
+        <Link
+          href={`/movie/${movie.id}`}
+          prefetch={false}
+          className="flex-1 flex flex-col"
+        >
+          <div className="relative aspect-2/3 overflow-hidden bg-muted">
             <Image
               src={posterUrl}
               alt={movie.title}
@@ -39,22 +44,20 @@ export default function MovieCard({ movie }: MovieCardProps) {
               loading="lazy"
             />
 
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
-              <button
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-foreground/50 bg-background/10 backdrop-blur-sm transition-all hover:bg-foreground hover:text-background"
-              >
-                <Info className="h-6 w-6" />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 cursor-pointer">
+              <button className="flex cursor-pointer h-12 w-12 items-center justify-center rounded-full border border-foreground/50 bg-background/10 backdrop-blur-sm transition-all hover:bg-foreground hover:text-background">
+                <Info size={24} />
               </button>{" "}
             </div>
 
             <div className="absolute top-3 right-3 flex items-center gap-1 rounded-md bg-background/80 px-2 py-1 backdrop-blur-sm">
-              <Star className="h-3.5 w-3.5 fill-primary text-primary" />
+              <Star className="size-3.5 fill-primary text-primary" />
               <span className="text-sm font-semibold text-foreground">
                 {movie.vote_average.toFixed(1)}
               </span>
             </div>
 
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-card via-card/80 to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-card via-card/80 to-transparent" />
           </div>
 
           <div className="relative -mt-8 px-4 pb-4 flex-1 flex flex-col justify-end">
@@ -64,14 +67,17 @@ export default function MovieCard({ movie }: MovieCardProps) {
 
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-muted-foreground">
               <span className="font-medium text-foreground">{releaseYear}</span>
-              <span className="hidden sm:block h-1 w-1 rounded-full bg-muted-foreground" />
+              <span className="hidden sm:block size-1 rounded-full bg-muted-foreground" />
               <Suspense fallback={<span className="text-xs">Loading...</span>}>
                 <GenreDisplay genreIds={movie.genre_ids} />
               </Suspense>
             </div>
           </div>
+        </Link>
+        <div className="absolute top-3 left-3 z-10">
+          <FavoriteButton movie={movie} />
         </div>
-      </Link>
+      </div>
     </div>
   );
 }

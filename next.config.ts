@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   /* config options here */
   poweredByHeader: false,
   compress: true,
-  reactStrictMode: true,
   productionBrowserSourceMaps: false,
   images: {
     unoptimized: false,
@@ -20,8 +19,7 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackFileSystemCacheForDev: true,
     scrollRestoration: true,
-
-  }
+  },
 };
 
 export default nextConfig;
