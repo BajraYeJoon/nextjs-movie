@@ -30,7 +30,7 @@ export default function MovieCard({ movie }: MovieCardProps) {
     <div className="group relative w-full cursor-pointer h-full flex flex-col">
       <div className="relative overflow-hidden rounded-xl bg-card transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/20 h-full flex flex-col">
         <Link
-          href={`/movie/${movie.id}`}
+          href={`/movie/${movie.id}?intercept=true`}
           prefetch={false}
           className="flex-1 flex flex-col"
         >

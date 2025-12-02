@@ -36,6 +36,12 @@ export default async function Home({ searchParams }: searchProps) {
           <SearchBar />
           <FavoritesButton />
           <GenreFilter />
+          <Link 
+            href="/movie/intercepted-modal" 
+            className="px-3 py-2 bg-primary text-primary-foreground rounded-md text-sm hover:bg-primary/90 transition-colors"
+          >
+            Show Intercepted Modal
+          </Link>
         </div>
       </div>
 
